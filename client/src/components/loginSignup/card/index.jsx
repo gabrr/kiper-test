@@ -1,18 +1,11 @@
 import React, { Fragment, useState } from 'react'
-import { connect } from 'react-redux'
-import { signin } from '../../../redux/actions'
-import { store } from '../../../redux'
 import './styles.css'
 
 const Card = props => {
     const [login, setLogin] = useState(true)
     const authenticate = e => {
         e.preventDefault()
-
-        return login ? store.dispatch(props.signin({email:'g.webdevelop@gmail.com', pass:'123abcde'})) :  null
     }
-
-
 
     const checkPassword = e => {
         const pass = e.target.value
@@ -23,7 +16,6 @@ const Card = props => {
 
         // if is to login show the original label
         if (login) label.innerHTML = 'Password'
-        console.log(props.state)
     }
 
     const checkName = e => {
@@ -68,12 +60,4 @@ const Card = props => {
     )
 }
 
-const mapStateToProps = state => ({
-    state
-})
-
-const mapDispatchToProps = dispatch => ({
-    signin: (args) => dispatch(signin(args))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Card)
+export default Card 

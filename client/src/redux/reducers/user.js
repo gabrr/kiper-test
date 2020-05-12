@@ -1,11 +1,6 @@
 import * as Constants from '../constants'
 
-const INITIAL_STATE = {
-    auth: null,
-    name: "",
-    email: "",
-    token: ""
-}
+const INITIAL_STATE = {}
 
 export const userReducer = (state = INITIAL_STATE, action) => {
     const { user } = action
@@ -16,3 +11,8 @@ export const userReducer = (state = INITIAL_STATE, action) => {
             return state
     }
 }
+
+// {auth: null,
+// name: "",
+// email: "",
+// token: ""}
