@@ -1,0 +1,77 @@
+.signCard {
+    width: 36vw;
+    max-width: 350px;
+    position: absolute;
+    padding: 50px 0;
+    top: 15vh;
+    transition: ease-in-out 300ms;
+    right: 30px;
+}
+
+.signCard form {
+    display: grid;
+    width: 70%;
+    margin: 0 auto;
+}
+
+#loginSignup p {
+    margin: 40px auto;
+}
+
+#loginSignup input {
+    margin: 5px 0 20px;
+    padding: 0 5px;
+}
+
+#loginSignup .title2 {
+    margin-bottom: 40px;
+}
+
+@media screen and (max-width: 950px) {
+    .signCard {
+        width: 50vw;
+        right: 50%;
+        top: 20vh;
+        transform: translateX(50%);
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .signCard {
+        width: 85vw;
+    }
+    .card {
+        background-color: #565656;
+    }
+    #curve1,
+    #curve2 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    #title {
+        margin-top: 30px !important;
+        font-size: 130% !important;
+    }
+    .signCard {
+        top: 15vh;
+    }
+    #signCont {
+        overflow-y: scroll !important;
+    }
+    .card {
+        box-shadow: none;
+    }
+}
+
+@media screen and (min-height: 850px) {
+    #curve1 {
+        top: -40vh !important;
+        left: -13vw !important;
+    }
+    #curve2 {
+        top: -53vh !important;
+        left: -13vw !important;
+    }
+}

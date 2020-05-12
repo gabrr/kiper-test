@@ -1,0 +1,59 @@
+#loginSignup {
+    width: 90%;
+    padding: 0 5%;
+    height: 100vh;
+    max-width: 1400px;
+    overflow-y: hidden;
+    position: relative;
+}
+
+#walkingPerson {
+    width: 61vw;
+    max-width: 500px;
+    margin-top: 10vh;
+    z-index: 3;
+}
+
+#curve1,
+#curve2 {
+    max-width: 1515px;
+    position: absolute;
+    pointer-events: none;
+}
+
+#curve1 {
+    left: -27%;
+    z-index: -2;
+    top: -80%;
+}
+
+#curve2 {
+    top: -88%;
+    left: -25%;
+    z-index: -3;
+}
+
+@media screen and (max-width: 1173px) {
+    #title {
+        font-size: 180%;
+    }
+    #walkingPerson {
+        width: 35vw;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    #title {
+        text-align: center;
+        margin-top: 60px;
+    }
+    #walkingPerson {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    #loginSignup {
+        height: 120vh;
+    }
+}
