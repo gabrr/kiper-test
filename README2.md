@@ -1,1 +1,0 @@
-# Kiper test, apartment system
