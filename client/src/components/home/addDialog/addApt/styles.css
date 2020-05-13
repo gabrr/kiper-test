@@ -1,0 +1,40 @@
+#aptCard input {
+    padding: 0 5px;
+    margin: 6px 0 10px;
+}
+
+#number {
+    max-width: 45px;
+}
+
+#block {
+    max-width: 25px;
+}
+
+#aptCard .btAction {
+    margin: 10px 0;
+}
+
+#aptCard .btAction:first-of-type {
+    margin-top: 30px;
+}
+
+@keyframes goAway {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+}
+
+.goAway {
+    animation: goAway 300ms ease-in-out;
+}
+
+.outOfView {
+    opacity: 0;
+    pointer-events: none;
+}

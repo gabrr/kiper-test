@@ -1,0 +1,27 @@
+#searchBar {
+    width: 100%;
+    justify-self: right;
+    max-width: 350px;
+    position: relative;
+}
+
+#searchBar input {
+    width: 90%;
+    height: 29px;
+    border-radius: 8px;
+    outline: none;
+    padding: 0 5%;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+#searchBar input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#searchIcon {
+    position: absolute;
+    right: 4%;
+    top: 51%;
+    transform: translateY(-50%);
+    width: 16px;
+}

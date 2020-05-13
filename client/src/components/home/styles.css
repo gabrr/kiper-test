@@ -3,3 +3,40 @@
     padding: 0 5%;
     max-width: 1250px;
 }
+
+nav {
+    margin-top: 5vh;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+}
+
+.btAction {
+    color: #7E76FF;
+    margin: 0 10px;
+    user-select: none;
+    -moz-user-select: none;
+    width: max-content;
+}
+
+.btAction:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#toolingRow {
+    margin-top: 7vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#toolingRow p:nth-child(2) {
+    justify-self: end;
+}
+
+.blured {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}

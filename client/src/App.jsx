@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux'
 import store from './redux'
 import AthenticateComponent from './auth/authenticate'
+import { isUserLogged } from './auth/isUserLogged'
 import LoginSignup from './components/loginSignup'
 import Home from './components/home'
 import {
@@ -14,9 +15,10 @@ import {
 
 export default class App extends Component {
   componentDidMount() {
-
+    isUserLogged()
     window.addEventListener('keydown', x => {
-      x.key === 'R' && console.log(store.getState())
+      let hour = new Date().getHours()
+      x.key === 'R' && console.log(store.getState(), 'hour', hour)
     })
   }
 
@@ -24,16 +26,19 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <Switch>
-              <Route exact path='/'>
-                <LoginSignup/>
-              </Route>
-              <Route path='/home'>
-                <AthenticateComponent>
-                    <Home/>
-                </AthenticateComponent>
-              </Route>
-          </Switch>
+          <div id="blur">
+            <Switch>
+                <Route exact path='/'>
+                  <LoginSignup/>
+                </Route>
+                <Route path='/home'>
+                  <AthenticateComponent>
+                      <Home/>
+                  </AthenticateComponent>
+                </Route>
+            </Switch>
+          </div>
+          <div id="noblur"></div>
         </Router>
       </Provider>
     )

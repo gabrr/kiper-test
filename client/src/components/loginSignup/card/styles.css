@@ -40,9 +40,6 @@
     .signCard {
         width: 85vw;
     }
-    .card {
-        background-color: #565656;
-    }
     #curve1,
     #curve2 {
         display: none;
@@ -62,6 +59,7 @@
     }
     .card {
         box-shadow: none;
+        background-color: #565656;
     }
 }
 

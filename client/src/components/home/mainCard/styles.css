@@ -1,0 +1,84 @@
+.mainCard {
+    margin-top: 30px;
+    padding: 25px 0;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.welcomingPhrase {
+    width: max-content;
+}
+
+#headRow {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 32px 0 7px;
+}
+
+#headRow p {
+    width: 100%;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.tableBody {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 20px 0;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.tableBody p {
+    width: 100%;
+    text-align: center;
+    font-weight: 400;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+
+/* for smaller columns */
+
+#headRow p:nth-child(2) {
+    width: 40%;
+}
+
+.tableBody p:nth-child(2) {
+    width: 40%;
+}
+
+#headRow p:nth-child(3) {
+    width: 70%;
+}
+
+.tableBody p:nth-child(3) {
+    width: 70%;
+}
+
+#headRow p:nth-child(4) {
+    width: 70%;
+}
+
+.tableBody p:nth-child(4) {
+    width: 70%;
+}
+
+
+/* highlighter */
+
+.highlighter {
+    width: 90%;
+    position: absolute;
+    height: 40px;
+    top: 115px;
+    pointer-events: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 8px;
+    transition: linear 200ms;
+}
