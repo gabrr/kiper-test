@@ -14,7 +14,7 @@ export const DataViewer = ({viewData, setViewData, editMode, setRealTimeData, re
                     [field]: value
                 }
             })
-            setViewData({...realTimeData.owner})
+            setViewData({...realTimeData.owner, [field]: value})
         } 
 
         // the item to be updated will be removed first and then added the lastest version of it.
