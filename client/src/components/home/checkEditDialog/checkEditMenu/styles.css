@@ -1,0 +1,27 @@
+#checkEditMenu .btAction {
+    margin: 12px 3px;
+}
+
+.menuLabel {
+    margin: 20px 0 5px 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.removeBt {
+    background-color: #FC6262;
+    height: 17px;
+    width: 17px;
+    margin: 0px 15px;
+    border-radius: 100%;
+    position: relative;
+}
+
+.removeIcon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-59%, -62%);
+}

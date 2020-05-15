@@ -10,7 +10,7 @@ export const isUserLogged = () => {
             email: "g.webdevelop@gmail.com",
             token: "ndea7xyt7r5768q7t7a%ˆ&*rhjg"
         }
-        store.dispatch({ type: 'SIGNIN_SUCCESS', user })
         myStorage.setStorage('user', user)
+        store.dispatch({ type: 'SIGNIN_SUCCESS', user })
     }
 }

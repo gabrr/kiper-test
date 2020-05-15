@@ -3,6 +3,7 @@
     padding: 25px 0;
     margin-bottom: 50px;
     position: relative;
+    transition: height 300ms ease-in-out;
 }
 
 .welcomingPhrase {

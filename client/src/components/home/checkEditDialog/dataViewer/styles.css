@@ -1,0 +1,23 @@
+#DataViewer {
+    margin-top: 21px;
+    width: 50%;
+}
+
+#DataViewer .cardHeader {
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+#DataViewer .leftSideLabel {
+    font-weight: 700;
+    margin: 8px 0;
+}
+
+#DataViewer .sideSpan {
+    margin: 0 6px;
+    font-weight: 400;
+}
+
+.noMargin {
+    margin: 0 !important;
+}

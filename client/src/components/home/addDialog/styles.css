@@ -12,6 +12,11 @@
 
 .contentInCard {
     display: grid;
+    transition: opacity ease-in-out 200ms;
+}
+
+.hidden {
+    display: none !important
 }
 
 .cardRow {

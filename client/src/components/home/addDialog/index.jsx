@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import { Provider, connect } from 'react-redux'
 import store from '../../../redux'
+import { connect, Provider } from 'react-redux'
 import './styles.css'
 import AddApt from './addApt'
 import AddDweller from './addDweller'
 
-export const AddDialog = () => {
+export const AddDialog = props => {
     const [apInfo, setApInfo] = useState({
         id: String(),
         number: Number(),
@@ -19,17 +19,11 @@ export const AddDialog = () => {
             cpf: String(),
             email: String()
         },
-        living: [
-            {
-                id: String(),
-                name: String(),
-                birthdate: Date(),
-                phone: String(),
-                cpf: String(),
-                email: String()
-            }
-        ]
+        living: []
     })
+
+    // type of the data that will be added to the main state (onwer || living)
+    const [dataType, setDataType] = useState('owner')
 
     const closeDialog = () => {
         document.getElementById('blur').style.filter = 'blur(0)'
@@ -41,26 +35,46 @@ export const AddDialog = () => {
         console.log(apInfo, 'apt. info sent')
     }
 
-    const removeChild = (comp, NewComp) => {
-        comp.classList.add('goAway')
+
+    const showAddDweller = (type) => {
+        // type: owner || living
+        const addDweller = document.querySelector('#dwellerCard')
+        const addApt = document.querySelector('#aptCard')
+
+        document.querySelector('#addCardSubmit').classList.add('outOfView')
+        addApt.classList.add('outOfView')
         setTimeout(() => {
-            ReactDOM.render(
-                <Provider store={store}>
-                    {<NewComp/>}
-                </Provider>, document.getElementById('addAptNode')
-            )
+            addApt.classList.add('hidden')
+            addDweller.classList.remove('hidden')
+            addDweller.classList.remove('outOfView')
+        }, 200)
+
+        setDataType(type)
+    }
+
+    const showAddApt = () => {
+        const addDweller = document.querySelector('#dwellerCard')
+        const addApt = document.querySelector('#aptCard')
+
+        document.querySelector('#addCardSubmit').classList.remove('outOfView')
+        addDweller.classList.add('outOfView')
+        setTimeout(() => {
+            addDweller.classList.add('hidden')
+            addApt.classList.remove('hidden')
+            addApt.classList.remove('outOfView')
         }, 200)
     }
-    
 
     return (
         <div className="addCard card">
             <form onSubmit={(e) => sendNewApData(e)}>
                 <div id="addAptNode">
-                    {/* <AddApt {...{apInfo, setApInfo, removeChild}} /> */}
-                    <AddDweller/>
+                    <AddApt {...{apInfo, setApInfo, showAddDweller}} />
+                    <AddDweller {...{apInfo, setApInfo, dataType, setDataType, showAddApt}} />
                 </div>
-                <div className="cardRow">
+                <div id="addDwellerNode">
+                </div>
+                <div id="addCardSubmit" className="cardRow">
                     <p onClick={() => closeDialog()} className="button2">Cancel</p>
                     <button type="submit" className="button">Save</button>
                 </div>

@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
-import { Provider } from 'react-redux'
 import store from '../../redux'
 import ReactDOM from 'react-dom'
-import { connect } from 'react-redux'
+import { connect, Provider } from 'react-redux'
 import { getAllApartments } from '../../redux/actions'
 import SearchBar from './searchBar'
 import MainCard from './mainCard'
@@ -41,11 +40,6 @@ const Home = props => {
 
     useEffect(() => {
         welcomeUser()
-        document.getElementById('blur').style.filter = 'blur(10px)'
-        ReactDOM.render(
-            <Provider store={store}>
-                <AddDialog/>
-            </Provider>, document.getElementById('noblur'))        
     })
 
 
@@ -59,7 +53,7 @@ const Home = props => {
                 <p className="btAction" onClick={() => addADweller()} >+ Add a dweller</p>
                 <p className="btAction">Filter by name</p>
             </div>
-            <MainCard/>
+            <MainCard {...{addADweller}}/>
             <div id="blurContainer"></div>
         </div>
     ) 
