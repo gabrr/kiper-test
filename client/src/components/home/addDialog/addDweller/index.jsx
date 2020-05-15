@@ -38,7 +38,7 @@ export const AddDweller = props => {
         <div id="dwellerCard" className="contentInCard outOfView hidden">
             <h3 className="cardHeader">Adding a Condo-dweller</h3>
             <p onClick={() => showAddApt(true)} className="btAction">{'< Back'}</p>
-            <label>Name<br/><input onChange={(e) => setUserData({...userData, name: e.target.value})}  name="name" className="input" type="text" placeholder="Nome Sobrenome" /></label>
+            <label>Name<br/><input onChange={(e) => setUserData({...userData, name: e.target.value})}  name="name" className="input" type="text" placeholder="First and lastname" /></label>
             <label>E-mail<br/><input onChange={(e) => setUserData({...userData, email: e.target.value})}  name="email" className="input" type="email"  placeholder="example@example.com"/></label>
             <label>Phone<br/><input onChange={(e) => setUserData({...userData, phone: e.target.value})}  name="phone" className="input" type="tel"  pattern="[0-9]{11}" placeholder="xxxxxxxxxxx"/></label>
             <label>CPF<br/><input onChange={(e) => setUserData({...userData, cpf: e.target.value})}  name="cpf" className="input" type="text" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
