@@ -23,7 +23,8 @@ export const AddApt = props => {
             <div className="dwellerlist">
                 {apInfo.living && (
                     apInfo.living.map(({name}) => {
-                        return <p style={{margin: '0 6px'}}>{name}<span style={{margin: '0 6px'}} className="btAction"> Edit</span></p>
+                        return <p style={{margin: '0 6px'}}>{name}</p>
+                        // <span style={{margin: '0 6px'}} className="btAction"> Edit</span>
                     })
                 )}
             </div>

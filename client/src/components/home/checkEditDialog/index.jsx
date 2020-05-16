@@ -40,7 +40,7 @@ export const CheckEditEDialog = props => {
             <div className="cardRow">
                 {editMode ? (
                     <Fragment>
-                        <p onClick={() => {}} className="button2">Remove Apartment</p>
+                        <p onClick={() => {}} className="button2">Remove apartment</p>
                         <button onClick={() =>  saveData()} className="button saveEditBt">Save</button>
                     </Fragment>
                 ) : (

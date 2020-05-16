@@ -55,6 +55,13 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
             email: "email@email.com",
             type: 'living'
         }
+        setRealTimeData({
+            ...aptData,
+            living: [
+                ...aptData.living,
+                newPerson
+            ]
+        })
         setAptData({
             ...aptData,
             living: [

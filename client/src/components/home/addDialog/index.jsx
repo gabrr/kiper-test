@@ -76,7 +76,7 @@ export const AddDialog = props => {
                 </div>
                 <div id="addCardSubmit" className="cardRow">
                     <p onClick={() => closeDialog()} className="button2">Cancel</p>
-                    <button type="submit" className="button">Save</button>
+                    <button type="submit" className="button">Create apartment</button>
                 </div>
             </form>
         </div>
