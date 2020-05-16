@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import './styles.css'
 
-export const CheckEditMenu = ({aptData, editMode, setViewData, setRealTimeData, realTimeData}) => {
+export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRealTimeData, realTimeData}) => {
 
     const handleAptInput = ({target}) => {
         let number = target.value.match(/\d/gi)
@@ -44,6 +44,27 @@ export const CheckEditMenu = ({aptData, editMode, setViewData, setRealTimeData, 
         }
     }
 
+    // the object created must have a real id, from the databases.
+    const addANewPerson = () => {
+        const newPerson = {
+            id: "@#$%ˆ&&%RGHJGFGHNBVGHJN",
+            name: "New Person",
+            birthdate: '01/12/2000',
+            phone: "119999999999",
+            cpf: "999.999.999-99",
+            email: "email@email.com",
+            type: 'living'
+        }
+        setAptData({
+            ...aptData,
+            living: [
+                ...aptData.living,
+                newPerson
+            ]
+        })
+        setViewData(newPerson)
+    }
+
 
     return (
         <div id="checkEditMenu">
@@ -62,6 +83,7 @@ export const CheckEditMenu = ({aptData, editMode, setViewData, setRealTimeData, 
                      {editMode && <div className="removeBt"  onClick={(e) => removeAPerson(e, person.id)}><p className="removeIcon">x</p></div>}
                 </div>
             ))}
+            {editMode && <div onClick={() => addANewPerson()} className="btAction addPerson2">+ Add a person</div>}
         </div>
     )
 }

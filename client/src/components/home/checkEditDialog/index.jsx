@@ -34,7 +34,7 @@ export const CheckEditEDialog = props => {
             <h3 className="cardHeader">{!editMode ? 'Check Condo-dweller' : 'Edit Condo-dweller'}</h3>
             <img  className="editButtonIcon" onClick={() => setEditMode(!editMode)} src={editImg} alt="edit button" />
             <div className="flexContainer">
-                <CheckEditMenu {...{aptData, editMode,viewData, setViewData, setRealTimeData, realTimeData}}/>
+                <CheckEditMenu {...{aptData, setAptData, editMode,viewData, setViewData, setRealTimeData, realTimeData}}/>
                 <DataViewer  {...{viewData, editMode, setViewData, setRealTimeData, realTimeData}}/>
             </div>
             <div className="cardRow">
@@ -52,47 +52,6 @@ export const CheckEditEDialog = props => {
         </div>
     )
 }
-
-// id: "09876",
-//         number: 200,
-//         block: "E",
-//         owner: {
-//             id: "vjgchvjbkhvgh",
-//             name: "Pedro Carvalho",
-//             birthdate: "20/12/45",
-//             phone: "1199999999",
-//             cpf: "122.333.444-99",
-//             email: "example@examplo.com"
-//         },
-//         living: [{
-//                 id: "xdghjkhgc",
-//                 name: "Helena",
-//                 birthdate: "20/12/45",
-//                 phone: "119999999999",
-//                 cpf: "122.333.444-99",
-//                 email: "ghgjgfgjghfhff@any.com"
-//             },
-//             {
-//                 id: "nbvgjn",
-//                 name: "Jhon hhh",
-//                 birthdate: "20/12/45",
-//                 phone: "119999999999",
-//                 cpf: "122.333.444-99",
-//                 email: "ghgjgfgjghfhff@any.com"
-//             },
-//             {
-//                 id: "Booon hhhhh",
-//                 name: "Helena",
-//                 birthdate: "20/12/45",
-//                 phone: "119999999999",
-//                 cpf: "122.333.444-99",
-//                 email: "ghgjgfgjghfhff@any.com"
-//             },
-//         ],
-//         _createdAt: "",
-//         _updatedAt: ""
-//     },
-
 
 const mapStateToProps = (state) => ({
     apts: state.apartments

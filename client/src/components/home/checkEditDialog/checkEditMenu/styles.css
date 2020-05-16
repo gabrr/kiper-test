@@ -26,3 +26,7 @@
     pointer-events: none;
     transform: translate(-59%, -62%);
 }
+
+#checkEditMenu .addPerson2 {
+    margin-top: 30px;
+}
