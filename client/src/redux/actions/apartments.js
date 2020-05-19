@@ -9,6 +9,24 @@ const getAllAPSSuccess = result => ({
     ]
 })
 
+export const addAnApartment = apt => ({
+    type: Constants.GET_AN_APT,
+    apartments: apt
+})
+
+
+export const updateApartments = (aptId, newApt) => ({
+    type: Constants.UPDATE_AN_APT,
+    aptId,
+    newApt
+})
+
+export const deleteApartments = aptId => ({
+    type: Constants.DELETE_AN_APT,
+    aptId
+})
+
+
 export const getAllApartments = (params = {}) => {
     return async(dispatch, getState) => {
         const result = await client

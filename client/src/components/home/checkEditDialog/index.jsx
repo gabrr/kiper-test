@@ -5,14 +5,16 @@ import editImg from '../../../assets/edit.png'
 import CheckEditMenu from './checkEditMenu'
 import DataViewer from './dataViewer'
 import { updateApartment } from '../../../gqlQueries/updateUpartment'
-import { getAllApartments } from '../../../redux/actions'
+import { deleteApartment } from '../../../gqlQueries/deleteApartment'
+import { getAllApartments, updateApartments, deleteApartments } from '../../../redux/actions'
 import { useMutation } from '@apollo/react-hooks'
 import './styles.css'
 
 export const CheckEditEDialog = props => {
-    const {_id: selected, apts, ongetAllApartment } = props
+    const {_id: selected, apts, onUpdateApartment, onDeleteApartment } = props
 
-    const [updateApt, { data }] = useMutation(updateApartment)
+    const [updateApt] = useMutation(updateApartment)
+    const [deleteApt] = useMutation(deleteApartment)
 
 
     // we are going to work only with object clicked(an apartment data)
@@ -36,8 +38,18 @@ export const CheckEditEDialog = props => {
             variables: {
                 input: realTimeData
             }
-        })
+        }).then(res => onUpdateApartment(selected, res.data.updateApt))
     }
+
+    const deletingApartment = () => {
+        closeCard()
+        deleteApt({
+            variables: {
+                _id: selected
+            }
+        }).then(() => onDeleteApartment(selected))
+    }
+
     
     return (
         <div id="checkEdit" className="card">
@@ -50,7 +62,7 @@ export const CheckEditEDialog = props => {
             <div className="cardRow">
                 {editMode ? (
                     <Fragment>
-                        <p onClick={() => {}} className="button2">Remove apartment</p>
+                        <p onClick={() => deletingApartment()} className="button2">Remove apartment</p>
                         <button onClick={() =>  saveData()} className="button saveEditBt">Save</button>
                     </Fragment>
                 ) : (
@@ -68,7 +80,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    ongetAllApartment: (args) => dispatch(getAllApartments)
+    ongetAllApartment: (args) => dispatch(getAllApartments),
+    onUpdateApartment: (aptId, newApt) => dispatch(updateApartments(aptId, newApt)),
+    onDeleteApartment: (aptId) => dispatch(deleteApartments(aptId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckEditEDialog)
