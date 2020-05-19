@@ -34,6 +34,7 @@ input UserInput {
 }
 
 input PersonInput {
+  _id: String
   name: String
   email: String
   birthdate: String
@@ -46,7 +47,15 @@ input CreateApartmentInput {
   number: String!
   block: String!
   owner: PersonInput
-  living: [PersonInput]!
+  living: [PersonInput]
+}
+
+input UpdateApartmentInput {
+  _id: String
+  number: String!
+  block: String!
+  owner: PersonInput
+  living: [PersonInput]
 }
 
 type Deleted {
@@ -55,18 +64,18 @@ type Deleted {
 }
 
 type Query {
-  apartment(_id: ID!): Apartment!
+  apartment(_id: String): Apartment!
   apartments: [Apartment!]!
 
   users: [User!]!
-  user(_id: ID!): User!
+  user(_id: String): User!
   login(email: String, password: String): User!
 }
 
 type Mutation {
   createApt(input: CreateApartmentInput): Apartment!
-  updateApt(_id: ID, input: CreateApartmentInput): Apartment!
-  deleteApt(_id: ID): Deleted!
+  updateApt(input: UpdateApartmentInput): Apartment!
+  deleteApt(_id: String): Deleted!
 
   createUser(input: UserInput): User!
 }

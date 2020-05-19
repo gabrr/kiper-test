@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 
 const aptSchema = new mongoose.Schema({
-    id: mongoose.Types.ObjectId,
     number: {
         type: String,
         required: true
@@ -11,7 +10,6 @@ const aptSchema = new mongoose.Schema({
         required: true
     },
     owner: {
-        id: mongoose.Types.ObjectId,
         name: {
             type: String,
             require: true
@@ -34,7 +32,6 @@ const aptSchema = new mongoose.Schema({
         class: String
     },
     living: [{
-        id: mongoose.Types.ObjectId,
         name: {
             type: String,
             require: true

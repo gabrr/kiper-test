@@ -14,7 +14,8 @@ mongoose.Promise = global.Promise
 
 mongoose.connect(process.env.DB_HOST, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 }).then(() => console.log('connected')).catch(err => console.log(err))
 
 
@@ -25,4 +26,11 @@ const server = new GraphQLServer({
     resolvers,
 })
 
-server.start({ port: 3100 }, ({ port }) => console.log(`Server is running on localhost: ${port}`))
+const options = {
+    port: process.env.PORT || 3100,
+    endpoint: '/graphql',
+    subscriptions: '/subscriptions',
+    playground: '/playground',
+}
+
+server.start(options, ({ port }) => console.log(`Server is running on localhost: ${port}`))
