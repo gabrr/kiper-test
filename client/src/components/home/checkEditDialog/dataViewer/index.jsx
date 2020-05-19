@@ -6,7 +6,7 @@ export const DataViewer = ({viewData, setViewData, editMode, setRealTimeData, re
 
     const handleInputs = ({target}, field) => {
         const { value } = target
-        if (viewData.type === 'owner') {
+        if (viewData.class === 'owner') {
             setRealTimeData({
                 ...realTimeData,
                 owner: {
@@ -17,12 +17,15 @@ export const DataViewer = ({viewData, setViewData, editMode, setRealTimeData, re
             setViewData({...realTimeData.owner, [field]: value})
         } 
 
+
+        console.log({realTimeData})
+
         // the item to be updated will be removed first and then added the lastest version of it.
         const { id } = viewData
         const lessItemToBeUpdated = realTimeData.living && realTimeData.living.filter((person) => person.id !== id)
         const newPerson = {...viewData, [field]: value}
 
-        if (viewData.type === 'living') {
+        if (viewData.class === 'living') {
             setRealTimeData({
                 ...realTimeData,
                 living: [

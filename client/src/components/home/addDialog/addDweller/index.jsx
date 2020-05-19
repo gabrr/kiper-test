@@ -10,24 +10,24 @@ export const AddDweller = props => {
             birthdate: Date(),
             phone: String(),
             cpf: String(),
-            email: String()
+            email: String(),
+            class: String()
     })
     
     const updateApData = () => {
         if (dataType === 'owner') {
             setApInfo({
                 ...apInfo,
-                owner: userData
+                owner: {...userData, class: 'owner'}
             })
         }
 
         if (dataType === 'living') {
-            console.log('arrived here')
             setApInfo({
                 ...apInfo,
                 living: [
                     ...apInfo.living,
-                    userData
+                    {...userData, class: 'living'}
                 ]
             })
         }

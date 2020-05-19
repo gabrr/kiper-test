@@ -2,6 +2,8 @@ import React, { useEffect, Fragment } from 'react'
 import store from '../../../redux'
 import ReactDOM from 'react-dom'
 import { connect, Provider } from 'react-redux'
+import { ApolloProvider } from '@apollo/react-hooks'
+import { client } from '../../../apolloClient'
 import NoData from './noData'
 import CheckEditDialog from '../checkEditDialog'
 import './styles.css'
@@ -24,19 +26,20 @@ export const MainCard = props => {
         }
     }
 
-    const showCheckEdit = id => {
+    const showCheckEdit = _id => {
         document.getElementById('blur').style.filter = 'blur(10px)'
         ReactDOM.render(
-            <Provider store={store}>
-                <CheckEditDialog {...{id}}/>
-            </Provider>, document.getElementById('noblur'))
+            <ApolloProvider client={client}>
+                <Provider store={store}>
+                    <CheckEditDialog {...{_id}}/>
+                </Provider>
+            </ApolloProvider>, document.getElementById('noblur'))
     }
 
     useEffect(() => {
         highlightRow()
     })
     
-    console.log(apts)
     return (
         <div className="card mainCard">
             {apts[0] && apts[0].owner && apts[0].number && apts[0].block ? (
@@ -50,7 +53,7 @@ export const MainCard = props => {
                         <p className="tableHead">E-mail</p>
                     </div>
                     {apts.map(ap => (
-                        <div key={keygenn()} className="tableBody" onClick={() => showCheckEdit(ap.id)}>
+                        <div key={keygenn()} className="tableBody" onClick={() => showCheckEdit(ap._id)}>
                             <p className="tableItem">{ap.owner.name}</p>
                             <p className="tableItem">{ap.number + ap.block}</p>
                             <p className="tableItem">{ap.owner.birthdate}</p>

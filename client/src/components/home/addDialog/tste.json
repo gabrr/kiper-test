@@ -1,0 +1,57 @@
+{
+    "data": {
+        "apartments": [{
+                "_id": "5ec2ddc1b183ba40532bdd87",
+                "number": "200",
+                "block": "E",
+                "owner": {
+                    "name": "Gabriel Oliveira",
+                    "email": "gabriel@example.com",
+                    "phone": "11999999999",
+                    "cpf": "999.999.999.-99",
+                    "birthdate": "20/12/1997",
+                    "class": "owner",
+                    "__typename": "Person"
+                },
+                "living": [{
+                        "_id": "5ec2ddc1b183ba40532bdd88",
+                        "name": "Jhon Peterson",
+                        "email": "jhon@example.com",
+                        "phone": "11999999999",
+                        "cpf": "999.999.999.-99",
+                        "birthdate": "20/12/1999",
+                        "class": "living",
+                        "__typename": "Person"
+                    },
+                    {
+                        "_id": "5ec2ddc1b183ba40532bdd89",
+                        "name": "Rebeca Richard",
+                        "email": "rebeca@example.com",
+                        "phone": "11999999999",
+                        "cpf": "999.999.999.-99",
+                        "birthdate": "20/12/1999",
+                        "class": "living",
+                        "__typename": "Person"
+                    }
+                ],
+                "__typename": "Apartment"
+            },
+            {
+                "_id": "5ec35af51fa64244b8914332",
+                "number": "300",
+                "block": "A",
+                "owner": {
+                    "name": "Gabriel Oliveira",
+                    "email": "g.webdevelopr@gmail.com",
+                    "phone": "11969208685",
+                    "cpf": "999.999.999-99",
+                    "birthdate": "2020-05-03",
+                    "class": null,
+                    "__typename": "Person"
+                },
+                "living": [],
+                "__typename": "Apartment"
+            }
+        ]
+    }
+}

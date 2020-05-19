@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import store from '../../redux'
 import ReactDOM from 'react-dom'
 import { connect, Provider } from 'react-redux'
+import { ApolloProvider } from '@apollo/react-hooks'
+import { client } from '../../apolloClient'
 import { getAllApartments } from '../../redux/actions'
 import SearchBar from './searchBar'
 import MainCard from './mainCard'
@@ -9,8 +11,9 @@ import AddDialog from './addDialog'
 import './styles.css'
 
 const Home = props => {
+    const { ongetApartments } = props
 
-    const welcomeUser = () => {
+    const welcomeUser =  useCallback(() => {
         const { name } = props.state.user
         const userFirstName = name.split(' ')[0]
         const input = document.querySelector('.welcomingPhrase')
@@ -28,19 +31,25 @@ const Home = props => {
         }
 
         input.innerHTML = getThePhrase(date)
-    }
+        },
+        [props.state.user],
+    ) 
 
     const addADweller = () => {
         document.getElementById('blur').style.filter = 'blur(10px)'
         ReactDOM.render(
-            <Provider store={store}>
-                <AddDialog/>
-            </Provider>, document.getElementById('noblur'))
+            <ApolloProvider client={client}>
+                <Provider store={store}>
+                    <AddDialog/>
+                </Provider>
+            </ApolloProvider>, document.getElementById('noblur'))
+            
     }
 
     useEffect(() => {
         welcomeUser()
-    })
+        ongetApartments()
+    }, [welcomeUser, ongetApartments])
 
 
     return (
@@ -64,7 +73,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    getApartments: (params) => dispatch(getAllApartments(params))
+    ongetApartments: (params) => dispatch(getAllApartments(params)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

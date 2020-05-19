@@ -1,16 +1,22 @@
-import React, { useState, Fragment, useEffect } from 'react'
+import React, { useState, Fragment } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import editImg from '../../../assets/edit.png'
 import CheckEditMenu from './checkEditMenu'
 import DataViewer from './dataViewer'
+import { updateApartment } from '../../../gqlQueries/updateUpartment'
+import { getAllApartments } from '../../../redux/actions'
+import { useMutation } from '@apollo/react-hooks'
 import './styles.css'
 
 export const CheckEditEDialog = props => {
-    const {id: selected, apts } = props
+    const {_id: selected, apts, ongetAllApartment } = props
+
+    const [updateApt, { data }] = useMutation(updateApartment)
+
 
     // we are going to work only with object clicked(an apartment data)
-    const apt = apts.filter(({id}) => id === selected)[0]
+    const apt = apts.filter(({_id}) => _id === selected)[0]
 
     const [editMode, setEditMode] = useState(false)
     const [viewData, setViewData] = useState(apt.owner)
@@ -22,11 +28,15 @@ export const CheckEditEDialog = props => {
         ReactDOM.unmountComponentAtNode(document.getElementById('noblur'))
     }
 
-    console.log({aptData, realTimeData})
-
     const saveData = () => {
         setAptData(realTimeData)
         setEditMode(!editMode)
+
+        updateApt({
+            variables: {
+                input: realTimeData
+            }
+        })
     }
     
     return (
@@ -57,8 +67,8 @@ const mapStateToProps = (state) => ({
     apts: state.apartments
 })
 
-const mapDispatchToProps = {
-    
-}
+const mapDispatchToProps = dispatch => ({
+    ongetAllApartment: (args) => dispatch(getAllApartments)
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckEditEDialog)

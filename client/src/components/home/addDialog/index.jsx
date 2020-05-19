@@ -1,26 +1,32 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import store from '../../../redux'
-import { connect, Provider } from 'react-redux'
+import { connect } from 'react-redux'
 import './styles.css'
 import AddApt from './addApt'
 import AddDweller from './addDweller'
+import { useMutation } from '@apollo/react-hooks'
+import { createApartment } from '../../../gqlQueries/createApartment'
+import { getAllApartments } from '../../../redux/actions'
 
 export const AddDialog = props => {
+    const { ongetAllApartment } = props
+
     const [apInfo, setApInfo] = useState({
-        id: String(),
-        number: Number(),
+        number: String(),
         block: String(),
         owner: {
-            id: String(),
             name: String(),
             birthdate: Date(),
             phone: String(),
             cpf: String(),
-            email: String()
+            email: String(),
+            class: String()
         },
         living: []
     })
+
+    const [mutationAction, { data }] = useMutation(createApartment)
+
 
     // type of the data that will be added to the main state (onwer || living)
     const [dataType, setDataType] = useState('owner')
@@ -32,7 +38,13 @@ export const AddDialog = props => {
 
     const sendNewApData = e => {
         e.preventDefault()
-        console.log(apInfo, 'apt. info sent')
+        
+        mutationAction({
+            variables: {
+              input: apInfo,
+            },
+        })
+        .catch(err => console.log(err))
     }
 
 
@@ -87,8 +99,8 @@ const mapStateToProps = (state) => ({
     
 })
 
-const mapDispatchToProps = {
-    
-}
+const mapDispatchToProps = dispatch => ({
+    ongetAllApartment: (args) => dispatch(getAllApartments(args))  
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddDialog)

@@ -11,8 +11,6 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
         let block =  target.value && target.value.match(/[a-zA-Z]/gi)
         block = block && block.join('').toUpperCase()
 
-        console.log({number, block})
-
         setRealTimeData({
             ...realTimeData,
             number,
@@ -47,13 +45,12 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
     // the object created must have a real id, from the databases.
     const addANewPerson = () => {
         const newPerson = {
-            id: "@#$%ˆ&&%RGHJGFGHNBVGHJN",
             name: "New Person",
             birthdate: '01/12/2000',
             phone: "119999999999",
             cpf: "999.999.999-99",
             email: "email@email.com",
-            type: 'living'
+            class: 'living'
         }
         setRealTimeData({
             ...aptData,
