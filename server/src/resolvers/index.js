@@ -22,7 +22,9 @@ export const resolvers = {
     Mutation: {
         createApt: async(_, { input }) => await creatingApartment(input),
         deleteApt: async(_, { _id }) => await Apartment.deleteOne({ _id }),
-        updateApt: async(_, { input }) => await Apartment.findByIdAndUpdate({ _id: input._id }, input),
+        updateApt: async(_, { input }) => await Apartment.findByIdAndUpdate({ _id: input._id }, input, {
+            new: true
+        }),
 
         // user resolvers
         createUser: async(_, { input }) => await creatingUser(input)
