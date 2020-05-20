@@ -14,4 +14,4 @@
 ![Login Page](https://github.com/gabrr/kiper-test/blob/master/Kiper%20Test-start.png)
 ![Home Page](https://github.com/gabrr/kiper-test/blob/master/Kiper%20Test-home.png)
 ![Structure Diagram](https://github.com/gabrr/kiper-test/blob/master/Kiper%20Test.png)
-![Entity-relationship Diagram](https://github.com/gabrr/kiper-test/blob/master/KiperERD.png)
+![Entity-relationship Diagram](https://github.com/gabrr/kiper-test/blob/master/Kiper%20TestERD.png)
