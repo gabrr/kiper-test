@@ -9,9 +9,6 @@ import CheckEditDialog from '../checkEditDialog'
 import './styles.css'
 
 export const MainCard = props => {
-    let key = 1
-    const keygenn = () => (key += 1)
-    
     const { apts, addADweller } = props
 
     const highlightRow = () => {
@@ -27,6 +24,7 @@ export const MainCard = props => {
     }
 
     const showCheckEdit = _id => {
+        console.log(apts)
         document.getElementById('blur').style.filter = 'blur(10px)'
         ReactDOM.render(
             <ApolloProvider client={client}>
@@ -53,7 +51,7 @@ export const MainCard = props => {
                         <p className="tableHead">E-mail</p>
                     </div>
                     {apts.map(ap => (
-                        <div key={keygenn()} className="tableBody" onClick={() => showCheckEdit(ap._id)}>
+                        <div key={ap._id} className="tableBody" onClick={() => showCheckEdit(ap._id)}>
                             <p className="tableItem">{ap.owner.name}</p>
                             <p className="tableItem">{ap.number + ap.block}</p>
                             <p className="tableItem">{ap.owner.birthdate}</p>

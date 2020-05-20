@@ -50,28 +50,12 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
     const addANewPerson = () => {
         const newPerson = {
             name: "New Person",
-            birthdate: '01/12/2000',
+            birthdate: '2020-05-06',
             phone: "119999999999",
             cpf: "999.999.999-99",
             email: "email@email.com",
             class: 'living'
         }
-
-        // setRealTimeData({
-        //     ...aptData,
-        //     living: [
-        //         ...aptData.living,
-        //         newPerson
-        //     ]
-        // })
-
-        // setAptData({
-        //     ...aptData,
-        //     living: [
-        //         ...aptData.living,
-        //         newPerson
-        //     ]
-        // })
 
         updateApt({
             variables: {

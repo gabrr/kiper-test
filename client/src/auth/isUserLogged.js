@@ -40,13 +40,3 @@ export const isUserLogged = () => {
 
     }
 }
-
-//     console.log({ data }, 'data')
-//     if (data._id) {
-//         
-//         return console.log(myStorage.getStorage('user'), 'local user ok')
-//     } else {
-
-//         return console.log(myStorage.getStorage('user'), 'local user bad')
-//     }
-// })

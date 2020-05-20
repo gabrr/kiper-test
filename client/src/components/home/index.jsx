@@ -47,6 +47,11 @@ const Home = props => {
             
     }
 
+    const filterAlfa = () => {
+        const result  = apartments.sort((a, b) => a.owner.name.localeCompare(b.owner.name))
+        setApts(result)
+    }
+
     useEffect(() => {
         welcomeUser()
         ongetApartments()
@@ -65,7 +70,7 @@ const Home = props => {
             </nav>
             <div id="toolingRow">
                 <p className="btAction" onClick={() => addADweller()} >+ Add a dweller</p>
-                <p className="btAction">Filter by name</p>
+                {/* <p className="btAction" onClick={() => filterAlfa()} >Filter by name</p> */}
             </div>
             <MainCard {...{addADweller, apts}}/>
             <div id="blurContainer"></div>
