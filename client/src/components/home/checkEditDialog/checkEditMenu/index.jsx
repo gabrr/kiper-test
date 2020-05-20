@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import { updateApartment } from '../../../../gqlQueries/updateUpartment'
+import { useMutation } from '@apollo/react-hooks'
 import './styles.css'
 
 export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRealTimeData, realTimeData}) => {
+
+    const [updateApt] = useMutation(updateApartment)
 
     const handleAptInput = ({target}) => {
         let number = target.value.match(/\d/gi)
@@ -16,10 +20,11 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
             number,
             block
         })
+        console.log(realTimeData, 'number and block')
     }
 
     const removeAPerson = (e, id) => {
-        const lessItemToBeDeleted = realTimeData.living && realTimeData.living.filter((person) => person.id !== id)
+        const lessItemToBeDeleted = realTimeData.living && realTimeData.living.filter((person) => person._id !== id)
         setRealTimeData({
             ...realTimeData,
             living: [
@@ -27,6 +32,9 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
             ]
         })
         itemsToBeRemoved(e.target.parentNode)
+        console.log(realTimeData.living, 'main menu remove person', {living: [
+            ...lessItemToBeDeleted
+        ]})
     }
 
     useEffect(() => {
@@ -52,21 +60,41 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
             email: "email@email.com",
             class: 'living'
         }
-        setRealTimeData({
-            ...aptData,
-            living: [
-                ...aptData.living,
-                newPerson
-            ]
+
+        // setRealTimeData({
+        //     ...aptData,
+        //     living: [
+        //         ...aptData.living,
+        //         newPerson
+        //     ]
+        // })
+
+        // setAptData({
+        //     ...aptData,
+        //     living: [
+        //         ...aptData.living,
+        //         newPerson
+        //     ]
+        // })
+
+        updateApt({
+            variables: {
+                input: {
+                    ...realTimeData,
+                    living: [
+                        ...realTimeData.living,
+                        newPerson
+                    ]
+                }
+            }
         })
-        setAptData({
-            ...aptData,
-            living: [
-                ...aptData.living,
-                newPerson
-            ]
+        .then(({data}) => {
+            setRealTimeData(data.updateApt)
+            setAptData(data.updateApt)
         })
+        
         setViewData(newPerson)
+        console.log(realTimeData.living, 'main menu new person')
     }
 
 
@@ -84,7 +112,7 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
             <h3 className="menuLabel">People living with</h3>
             {aptData.living[0] && aptData.living.map((person, i) => (
                 <div key={i} onClick={() => !editMode && setViewData({...person})} className="btAction flex">{person.name}
-                     {editMode && <div className="removeBt"  onClick={(e) => removeAPerson(e, person.id)}><p className="removeIcon">x</p></div>}
+                     {editMode && <div className="removeBt"  onClick={(e) => removeAPerson(e, person._id)}><p className="removeIcon">x</p></div>}
                 </div>
             ))}
             {editMode && <div onClick={() => addANewPerson()} className="btAction addPerson2">+ Add a person</div>}
