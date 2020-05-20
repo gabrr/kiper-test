@@ -5,7 +5,7 @@ import './styles.css'
 import AddApt from './addApt'
 import AddDweller from './addDweller'
 import { useMutation } from '@apollo/react-hooks'
-import { createApartment } from '../../../gqlQueries/createApartment'
+import { createApartment } from '../../../graphql/mutations/createApartment'
 import { addAnApartment } from '../../../redux/actions'
 
 export const AddDialog = props => {

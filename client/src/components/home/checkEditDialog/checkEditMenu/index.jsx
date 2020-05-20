@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { updateApartment } from '../../../../gqlQueries/updateUpartment'
+import { updateApartment } from '../../../../graphql/mutations/updateApartment'
 import { useMutation } from '@apollo/react-hooks'
 import './styles.css'
 
@@ -56,23 +56,7 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
             email: "email@email.com",
             class: 'living'
         }
-
-        // setRealTimeData({
-        //     ...aptData,
-        //     living: [
-        //         ...aptData.living,
-        //         newPerson
-        //     ]
-        // })
-
-        // setAptData({
-        //     ...aptData,
-        //     living: [
-        //         ...aptData.living,
-        //         newPerson
-        //     ]
-        // })
-
+        
         updateApt({
             variables: {
                 input: {

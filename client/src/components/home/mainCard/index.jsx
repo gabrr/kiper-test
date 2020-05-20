@@ -42,7 +42,7 @@ export const MainCard = props => {
     
     return (
         <div className="card mainCard">
-            {apts[0] && apts[0].owner && apts[0].number && apts[0].block ? (
+            {apts && apts[0] && apts[0].owner && apts[0].number && apts[0].block ? (
                 <Fragment>
                     <div className="highlighter"></div>
                         <div id="headRow">
@@ -67,9 +67,9 @@ export const MainCard = props => {
     )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => {
 
-})
+}
 
 const mapDispatchToProps = {
     

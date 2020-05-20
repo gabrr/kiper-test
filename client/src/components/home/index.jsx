@@ -9,10 +9,42 @@ import SearchBar from './searchBar'
 import MainCard from './mainCard'
 import AddDialog from './addDialog'
 import './styles.css'
+import {useQuery} from '@apollo/react-hooks'
+import gql from 'graphql-tag'
+
+const apartmentsQuery = gql ` 
+{
+  apartments {
+          _id,
+          number,
+          block,
+          owner {
+              name,
+              email,
+              phone,
+              cpf,
+              birthdate,
+              class
+          },
+          living{
+              _id,
+              name,
+              email,
+              phone,
+              cpf,
+              birthdate,
+              class
+          }
+      }
+}
+  
+  `
 
 const Home = props => {
     const { ongetApartments, apartments } = props
     const [apts, setApts] = useState(apartments)
+    const {loading, error, data} = useQuery(apartmentsQuery)
+    if (!loading && !error) console.log(data)
 
     const welcomeUser =  useCallback(() => {
         const { name } = props.state.user
