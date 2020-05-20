@@ -1,22 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import searchIcon from '../../../assets/zoom.png'
 import { multipleMatchs } from './multipleMatchs'
 import './styles.css'
 
 const SearchBar = props => {
-    const { setApts, apts } = props
+    const { setApts, apartments } = props
 
-    const filterItems = ({target}, delay, button) => {
+    const filterItems = async ({target}, delay, button) => {
         const { value } = target
 
-        multipleMatchs(value, apts)
-
-        // if(button) {
-            
-        // } else {
-
-        // }
+        const filteredResults = await multipleMatchs(value, apartments)
+        setApts(filteredResults)
     }
 
     return (
@@ -28,7 +23,7 @@ const SearchBar = props => {
 }
 
 const mapStateToProps = (state) => ({
-    
+    apartments: state.apartments
 })
 
 const mapDispatchToProps = {
