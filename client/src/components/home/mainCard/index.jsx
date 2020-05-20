@@ -68,7 +68,7 @@ export const MainCard = props => {
 }
 
 const mapStateToProps = (state) => ({
-    apts: state.apartments
+
 })
 
 const mapDispatchToProps = {

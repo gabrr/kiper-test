@@ -33,7 +33,6 @@ export const DataViewer = ({viewData, setViewData, editMode, setRealTimeData, re
             setViewData(newPerson)
         } 
 
-        console.log(realTimeData.living, 'as user type')
     }
 
     return (

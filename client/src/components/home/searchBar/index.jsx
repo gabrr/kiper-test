@@ -1,18 +1,22 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import searchIcon from '../../../assets/zoom.png'
+import { multipleMatchs } from './multipleMatchs'
 import './styles.css'
 
 const SearchBar = props => {
-    const [searchInput, setSearchInput] = useState('')
+    const { setApts, apts } = props
 
     const filterItems = ({target}, delay, button) => {
-        if(button) {
-            
-        } else {
-            setSearchInput(target.value)
+        const { value } = target
 
-        }
+        multipleMatchs(value, apts)
+
+        // if(button) {
+            
+        // } else {
+
+        // }
     }
 
     return (

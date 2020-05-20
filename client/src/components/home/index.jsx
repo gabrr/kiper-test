@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect, useCallback, useState } from 'react'
 import store from '../../redux'
 import ReactDOM from 'react-dom'
 import { connect, Provider } from 'react-redux'
@@ -11,7 +11,8 @@ import AddDialog from './addDialog'
 import './styles.css'
 
 const Home = props => {
-    const { ongetApartments } = props
+    const { ongetApartments, apartments } = props
+    const [apts, setApts] = useState(apartments)
 
     const welcomeUser =  useCallback(() => {
         const { name } = props.state.user
@@ -51,24 +52,29 @@ const Home = props => {
         ongetApartments()
     }, [welcomeUser, ongetApartments])
 
+    useEffect(() => {
+        setApts(apartments)
+    }, [apartments])
+
 
     return (
         <div id="home">
             <nav>
                 <h1 className='welcomingPhrase'> </h1>
-                <SearchBar/>
+                <SearchBar {...{setApts, apts}} />
             </nav>
             <div id="toolingRow">
                 <p className="btAction" onClick={() => addADweller()} >+ Add a dweller</p>
                 <p className="btAction">Filter by name</p>
             </div>
-            <MainCard {...{addADweller}}/>
+            <MainCard {...{addADweller, apts}}/>
             <div id="blurContainer"></div>
         </div>
     ) 
 }
 
 const mapStateToProps = state => ({
+    apartments: state.apartments,
     state
 })
 

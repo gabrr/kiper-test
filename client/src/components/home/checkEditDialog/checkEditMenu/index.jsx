@@ -20,7 +20,6 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
             number,
             block
         })
-        console.log(realTimeData, 'number and block')
     }
 
     const removeAPerson = (e, id) => {
@@ -32,9 +31,6 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
             ]
         })
         itemsToBeRemoved(e.target.parentNode)
-        console.log(realTimeData.living, 'main menu remove person', {living: [
-            ...lessItemToBeDeleted
-        ]})
     }
 
     useEffect(() => {
@@ -94,7 +90,6 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
         })
         
         setViewData(newPerson)
-        console.log(realTimeData.living, 'main menu new person')
     }
 
 
