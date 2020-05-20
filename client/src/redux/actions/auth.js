@@ -3,7 +3,10 @@ import * as myStorage from '../../utils/localStorage'
 
 const signSuccess = user => ({
     type: Constants.SIGNIN_SUCCESS,
-    user
+    user: {
+        auth: true,
+        ...user
+    }
 })
 
 // const signError = data => ({
@@ -16,7 +19,7 @@ const signSuccess = user => ({
 export const signin = (user) => {
     myStorage.setStorage('user', { auth: true, ...user })
     return (dispatch, getState) => {
-        return dispatch(signSuccess({ auth: true, ...user }))
+        return dispatch(signSuccess(user))
     }
 }
 
@@ -24,7 +27,7 @@ export const signup = (user) => {
     myStorage.setStorage('user', { auth: true, ...user })
     return (dispatch, getState) => {
         return (
-            dispatch(signSuccess({ auth: true, ...user }))
+            dispatch(signSuccess(user))
         )
     }
 }

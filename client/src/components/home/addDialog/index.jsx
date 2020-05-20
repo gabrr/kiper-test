@@ -43,9 +43,12 @@ export const AddDialog = props => {
             variables: {
                 input: apInfo,
             }
-        }).then(res => ongetAnApartment(res.data.createApt))
+        })
+        .then(res => ongetAnApartment(res.data.createApt))
+        .then(closeDialog())
         .catch(err => console.log(err))
     }
+
 
 
     const showAddDweller = (type) => {

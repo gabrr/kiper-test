@@ -11,8 +11,3 @@ export const userReducer = (state = INITIAL_STATE, action) => {
             return state
     }
 }
-
-// {auth: null,
-// name: "",
-// email: "",
-// token: ""}
