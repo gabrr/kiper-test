@@ -1,12 +1,46 @@
 import React, { Fragment, useState } from 'react'
+import { useMutation, useLazyQuery } from '@apollo/react-hooks'
+import { signUpMutation } from '../../../gqlQueries/signUpMutation'
+import { signinQuery } from '../../../gqlQueries/signinQuery'
+import store from '../../../redux'
 import './styles.css'
+import { signup, signin } from '../../../redux/actions'
 
-const Card = props => {
+const Card = (props) => {
     const [login, setLogin] = useState(true)
-    const authenticate = e => {
+
+    const [signUp] = useMutation(signUpMutation)
+    const [signingIn] = useLazyQuery(signinQuery, {
+        onCompleted: ({login}) => store.dispatch(signin(login))
+    })
+
+    const authenticate = (e) => {
         e.preventDefault()
+        
+        const {email, password} = e.target.children
+
+        const credentials = {
+            email: email.value || '',
+            password: password.value || ''
+        }
+        
+        // if view is set to do login
+        if (login) return signingIn({ variables: credentials })
+         
+        
+        //if view is set to signup
+        const { name } = e.target.children
+
+        signUp({
+            variables: {
+                input: {name: name.value, ...credentials}
+            }
+        }).then(({data}) => store.dispatch(signup(data.createUser)))
+        
     }
 
+
+    // password must be greater than six characters and contains numbers
     const checkPassword = e => {
         const pass = e.target.value
         const label = document.querySelector('#passlabel')
@@ -18,6 +52,8 @@ const Card = props => {
         if (login) label.innerHTML = 'Password'
     }
 
+
+    // to make sure user inputs two names
     const checkName = e => {
         const name = e.target.value
         const label = document.querySelector('#namelabel')
@@ -43,10 +79,11 @@ const Card = props => {
         <div className="card signCard">
             <form onSubmit={(x) => authenticate(x)}>
                 <h2 className="title2">{login ? 'Sign in' : 'Sign up'}</h2>
-                {login ? null : (<Fragment>
-                    <label id='namelabel' htmlFor="name">Fullname</label>
-                <input className="input" required type="text" maxLength="30" onChange={e => checkName(e)} name="name" id="name"/>
-                </Fragment>)}
+                {login ? null : (
+                    <Fragment>
+                        <label id='namelabel' htmlFor="name">Fullname</label>
+                        <input className="input" required type="text" maxLength="30" onChange={e => checkName(e)} name="name" id="name"/>
+                    </Fragment>)}
                 <label htmlFor="email">E-mail</label>
                 <input className="input" required type="email" name="email" id="email"/>
                 <label id="passlabel" htmlFor="password">Password</label>

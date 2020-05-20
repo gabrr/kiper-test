@@ -1,37 +1,30 @@
 import * as Constants from '../constants'
+import * as myStorage from '../../utils/localStorage'
 
-const signSuccess = data => ({
+const signSuccess = user => ({
     type: Constants.SIGNIN_SUCCESS,
-    user: {
-        auth: true,
-        name: "Gabriel",
-        email: "g.webdevelop@gmail.com",
-        token: "ndea7xyt7r5768q7t7a%ˆ&*rhjg"
-    }
+    user
 })
 
-const signError = data => ({
-    type: Constants.SIGNIN_ERROR,
-    user: {
-        auth: false
-    }
-})
+// const signError = data => ({
+//     type: Constants.SIGNIN_ERROR,
+//     user: {
+//         auth: false
+//     }
+// })
 
-export const signin = (params = {}) => {
-    // const { email, pass } = params
-
+export const signin = (user) => {
+    myStorage.setStorage('user', { auth: true, ...user })
     return (dispatch, getState) => {
-        return dispatch(signSuccess())
+        return dispatch(signSuccess({ auth: true, ...user }))
     }
 }
 
-export const signup = (params = {}) => {
-    const { email, pass } = params
-
+export const signup = (user) => {
+    myStorage.setStorage('user', { auth: true, ...user })
     return (dispatch, getState) => {
-        return email === 'g.webdevelop@gmail.com' && pass === '123abcde' ? (
-            dispatch(signSuccess())
-        ) : (dispatch(signError()))
-
+        return (
+            dispatch(signSuccess({ auth: true, ...user }))
+        )
     }
 }
