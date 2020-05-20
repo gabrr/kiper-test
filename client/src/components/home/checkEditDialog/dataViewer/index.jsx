@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import './styles.css'
 
@@ -16,9 +16,6 @@ export const DataViewer = ({viewData, setViewData, editMode, setRealTimeData, re
             })
             setViewData({...realTimeData.owner, [field]: value})
         } 
-
-
-        console.log({realTimeData})
 
         // the item to be updated will be removed first and then added the lastest version of it.
         const { id } = viewData

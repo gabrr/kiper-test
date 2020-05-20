@@ -6,10 +6,10 @@ import AddApt from './addApt'
 import AddDweller from './addDweller'
 import { useMutation } from '@apollo/react-hooks'
 import { createApartment } from '../../../gqlQueries/createApartment'
-import { getAllApartments, addAnApartment } from '../../../redux/actions'
+import { addAnApartment } from '../../../redux/actions'
 
 export const AddDialog = props => {
-    const { ongetAllApartment, ongetAnApartment } = props
+    const { ongetAnApartment } = props
 
     const [apInfo, setApInfo] = useState({
         number: String(),
@@ -25,7 +25,7 @@ export const AddDialog = props => {
         living: []
     })
 
-    const [mutationAction, { data }] = useMutation(createApartment)
+    const [mutationAction] = useMutation(createApartment)
 
 
     // type of the data that will be added to the main state (onwer || living)
@@ -100,7 +100,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    ongetAllApartment: (args) => dispatch(getAllApartments(args)), 
     ongetAnApartment: (args) => dispatch(addAnApartment(args))  
 })
 

@@ -6,9 +6,7 @@ import { isUserLogged } from './auth/isUserLogged'
 import LoginSignup from './components/loginSignup'
 import Home from './components/home'
 import { client } from './apolloClient'
-
 import { ApolloProvider } from '@apollo/react-hooks'
-
 
 import {
     BrowserRouter as Router,
@@ -16,16 +14,9 @@ import {
     Route,
 } from "react-router-dom";
 
-
-
 export default class App extends Component {
   componentDidMount() {
     isUserLogged()
-    window.addEventListener('keydown', x => {
-      let hour = new Date().getHours()
-      x.key === 'R' && console.log(store.getState(), 'hour', hour)
-    })
-
   }
 
   render() {
