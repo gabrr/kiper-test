@@ -1,7 +1,7 @@
 export const typeDefs = `
 
 type Person {
-  _id: ID!
+  _id: String
   name: String
   email: String
   birthdate: String
@@ -11,14 +11,14 @@ type Person {
 }
 
 type User {
-  _id: ID!
+  _id: String
   name: String
   email: String
   token: String
 }
 
 type Apartment {
-  _id: ID!
+  _id: String
   number: String!
   block: String!
   owner: Person!
