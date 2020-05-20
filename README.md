@@ -7,3 +7,8 @@
 `cd client && yarn install && yarn start`
 
 #### Note that you must have mongo installed and running on: mongodb://127.0.0.1:27017
+
+
+## Project Images
+
+![Home Page](https://github.com/gabrr)
