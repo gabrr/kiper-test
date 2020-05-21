@@ -1,12 +1,17 @@
 export const multipleMatchs = (textInput, items) => {
     return new Promise((resolve) => {
-        const textToLowerNoSpace = textInput.toLowerCase().replace(/\s/gi, '')
+        const shortTxt = text => {
+            return text.toLowerCase().replace(/\s/gi, '')
+        }
+        const textToLowerNoSpace = shortTxt(textInput)
 
         // creating an array with values to be compared AKA: name and email
         const namesAndEmail = items.map((apartment) => {
+            const { name, email } = apartment.owner
+            const { block, number } = apartment
             return {
                 hits: {
-                    code: apartment.owner.name.toLowerCase().replace(/\s/gi, '') + apartment.owner.email.toLowerCase().replace(/\s/gi, ''),
+                    code: shortTxt(name) + shortTxt(email) + shortTxt(number) + shortTxt(block),
                     apartment
 
                 }
