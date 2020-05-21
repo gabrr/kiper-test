@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './styles.css'
 
-export const DataViewer = ({viewData, setViewData, editMode, setRealTimeData, realTimeData}) => {
+export const DataViewer = ({viewData, setViewData, editMode, aptData, setRealTimeData, realTimeData}) => {
+    const localData = editMode ? realTimeData : aptData
 
     const handleInputs = ({target}, field) => {
         const { value } = target

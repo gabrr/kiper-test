@@ -24,7 +24,6 @@ export const MainCard = props => {
     }
 
     const showCheckEdit = _id => {
-        console.log(apts)
         document.getElementById('blur').style.filter = 'blur(10px)'
         ReactDOM.render(
             <ApolloProvider client={client}>
