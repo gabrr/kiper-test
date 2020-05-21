@@ -24,21 +24,38 @@ export const CheckEditEDialog = props => {
     const [viewData, setViewData] = useState(apt.owner)
     const [aptData, setAptData] = useState(apt)
     const [realTimeData, setRealTimeData] = useState(apt)
+    const [livingToDelete, setlivingToDelete] = useState([])
 
     const closeCard = () => {
         document.getElementById('blur').style.filter = 'blur(0)'
         ReactDOM.unmountComponentAtNode(document.getElementById('noblur'))
     }
 
-    const saveData = () => {
-        setAptData(realTimeData)
-        setEditMode(!editMode)
-
+    const saveData = async() => {
         updateApt({
             variables: {
-                input: realTimeData
+                input: {
+                    ...realTimeData,
+                    living: remainedLiving()
+                }
             }
-        }).then(res => onUpdateApartment(selected, res.data.updateApt))
+        }).then(res => {
+            onUpdateApartment(selected, res.data.updateApt)
+            setEditMode(!editMode)
+            setlivingToDelete([])
+            setAptData(res.data.updateApt)
+            setRealTimeData(res.data.updateApt)
+        })
+    }
+
+    // deleting people who live with if any highlighted
+    const remainedLiving = () => {
+        const remainedItems = realTimeData.living && realTimeData.living.map((item) => {
+            const wontDelete = livingToDelete.map(id => id === item._id ? false : item) 
+            return wontDelete.indexOf(false) === -1 && item
+        })
+        .filter(items => items !== false)
+        return remainedItems
     }
 
     const deletingApartment = () => {
@@ -50,14 +67,14 @@ export const CheckEditEDialog = props => {
         }).then(() => onDeleteApartment(selected))
     }
 
-    
+    const childrenProps = {aptData, setAptData, editMode, viewData, setViewData, setRealTimeData, realTimeData, setlivingToDelete, livingToDelete}
     return (
         <div id="checkEdit" className="card">
             <h3 className="cardHeader">{!editMode ? 'Check Condo-dweller' : 'Edit Condo-dweller'}</h3>
             <img  className="editButtonIcon" onClick={() => setEditMode(!editMode)} src={editImg} alt="edit button" />
             <div className="flexContainer">
-                <CheckEditMenu {...{aptData, setAptData, editMode,viewData, setViewData, setRealTimeData, realTimeData}}/>
-                <DataViewer  {...{viewData, editMode, setViewData, setRealTimeData, realTimeData}}/>
+                <CheckEditMenu {...childrenProps}/>
+                <DataViewer  {...childrenProps}/>
             </div>
             <div className="cardRow">
                 {editMode ? (

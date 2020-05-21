@@ -4,9 +4,10 @@ import { updateApartment } from '../../../../gqlQueries/updateUpartment'
 import { useMutation } from '@apollo/react-hooks'
 import './styles.css'
 
-export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRealTimeData, realTimeData}) => {
+export const CheckEditMenu = ({aptData, editMode, setViewData, setRealTimeData, realTimeData, setlivingToDelete, livingToDelete}) => {
 
     const [updateApt] = useMutation(updateApartment)
+    const localData = editMode ? realTimeData : aptData
 
     const handleAptInput = ({target}) => {
         let number = target.value.match(/\d/gi)
@@ -22,14 +23,10 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
         })
     }
 
+
+
     const removeAPerson = (e, id) => {
-        const lessItemToBeDeleted = realTimeData.living && realTimeData.living.filter((person) => person._id !== id)
-        setRealTimeData({
-            ...realTimeData,
-            living: [
-                ...lessItemToBeDeleted
-            ]
-        })
+        setlivingToDelete([...livingToDelete, id])
         itemsToBeRemoved(e.target.parentNode)
     }
 
@@ -49,7 +46,7 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
     // the object created must have a real id, from the databases.
     const addANewPerson = () => {
         const newPerson = {
-            name: "New Person",
+            name: "New person :)",
             birthdate: '2020-05-06',
             phone: "119999999999",
             cpf: "999.999.999-99",
@@ -70,27 +67,28 @@ export const CheckEditMenu = ({aptData, setAptData, editMode, setViewData, setRe
         })
         .then(({data}) => {
             setRealTimeData(data.updateApt)
-            setAptData(data.updateApt)
+
+            // the last person it was just inserted, so we must update the user viwer
+            // that way as soon as the users adds he can edit the person inserted.
+            setViewData(data.updateApt.living.slice(-1)[0])
         })
         
-        setViewData(newPerson)
     }
-
 
     return (
         <div id="checkEditMenu">
             <h3 className="menuLabel">Apartment 
                 {editMode ? (
-                    <input onChange={e => handleAptInput(e)} className="input editCardInput" size="5" type="text" placeholder="Digit number and block" defaultValue={aptData.number + aptData.block}/>
+                    <input onChange={e => handleAptInput(e)} className="input editCardInput" size="5" type="text" placeholder="Digit number and block" defaultValue={localData.number + localData.block}/>
                 ) : (
-                    <span className="aptNumberBlock">{aptData.number + aptData.block}</span> 
+                    <span className="aptNumberBlock">{localData.number + localData.block}</span> 
                 )}
             </h3>
             <h3 className="menuLabel">Condo-dweller</h3>
-            <div  onClick={() => !editMode && setViewData(aptData.owner)} className="btAction">{aptData.owner.name}</div>
+            <div  onClick={() => setViewData(localData.owner)} className="btAction">{localData.owner.name}</div>
             <h3 className="menuLabel">People living with</h3>
-            {aptData.living[0] && aptData.living.map((person, i) => (
-                <div key={i} onClick={() => !editMode && setViewData({...person})} className="btAction flex">{person.name}
+            {localData.living[0] && localData.living.map((person, i) => (
+                <div key={i} onClick={() => setViewData({...person})} className="btAction flex">{person.name}
                      {editMode && <div className="removeBt"  onClick={(e) => removeAPerson(e, person._id)}><p className="removeIcon">x</p></div>}
                 </div>
             ))}
