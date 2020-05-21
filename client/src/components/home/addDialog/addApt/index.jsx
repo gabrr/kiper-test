@@ -17,7 +17,7 @@ export const AddApt = props => {
             <label>Block<br/><input required name="block" value={apInfo.block} onChange={e => handleInput(e, 'block')} className="input" id="block" type="text" maxLength="1"/></label>
             <p className="btAction" onClick={() => showAddDweller('owner')} >+ Condo-dweller</p>
             <div className="dwellerlist">
-                {apInfo.owner.name && <p style={{margin: '0 6px'}}>{apInfo.owner.name}<span style={{margin: '0 6px'}} className="btAction"> Edit</span></p>}
+                {apInfo.owner.name && <p style={{margin: '0 6px'}}>{apInfo.owner.name}</p>}
             </div>
             <p className="btAction" onClick={() => showAddDweller('living')} >+ People living with</p>
             <div className="dwellerlist">
