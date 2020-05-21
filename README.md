@@ -8,6 +8,9 @@
 
 #### Note that you must have mongo installed and running on: mongodb://127.0.0.1:27017
 
+You can import data directly to mongo.(If you are on the root)
+`mongoimport --db gabrr-condo --collection apartments --file apartments.json`
+
 
 ## Project Images
 
